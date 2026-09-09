@@ -208,7 +208,10 @@
                                 </button>
                             </div>
 
-                            <div>
+                            <div class="flex items-center gap-1">
+                                <a href="add-item.html?edit=${item.id}" title="Edit Item" class="p-2.5 rounded-2xl text-slate-500 hover:text-emerald-600 hover:bg-emerald-50 transition-all">
+                                    <i class="fa-solid fa-pen-to-square text-sm"></i>
+                                </a>
                                 <button onclick="onDeleteItem(${item.id})" title="Delete Item" class="p-2.5 rounded-2xl text-slate-500 hover:text-rose-600 hover:bg-rose-50 transition-all">
                                     <i class="fa-solid fa-trash-can text-sm"></i>
                                 </button>
