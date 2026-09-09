@@ -181,5 +181,35 @@
     <footer class="backdrop-blur-xl bg-white/80 border-t border-emerald-200/60 py-6 text-center text-xs font-semibold text-slate-500 mt-auto">
         <p>Designed by Gaurika Pawade - CS25140</p>
     </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function renderDashboard() {
+            const pantry = getPantry();
+
+            let lowStockCount = 0;
+            let expiringCount = 0;
+            let expiredCount = 0;
+
+            for (let i = 0; i < pantry.length; i++) {
+                const item = pantry[i];
+                if (isExpired(item.expiry)) expiredCount++;
+                if (isExpiringSoon(item.expiry)) expiringCount++;
+                if (isLowStock(item.quantity, item.minStock)) lowStockCount++;
+            }
+
+            document.getElementById("stat-total").textContent = pantry.length;
+            document.getElementById("stat-low-stock").textContent = lowStockCount;
+            document.getElementById("stat-expiring").textContent = expiringCount;
+            document.getElementById("stat-expired").textContent = expiredCount;
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+
+        document.addEventListener("DOMContentLoaded", renderDashboard);
+    </script>
 </body>
 </html>
