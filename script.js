@@ -92,3 +92,60 @@ function savePantry(pantryArray) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(pantryArray));
 }
 
+function isExpired(expiryDateStr) {
+    if (!expiryDateStr) return false;
+    return expiryDateStr < getTodayStr();
+}
+
+function isExpiringSoon(expiryDateStr) {
+    if (!expiryDateStr) return false;
+    const todayStr = getTodayStr();
+    if (expiryDateStr < todayStr) return false;
+
+    const todayDate = new Date(todayStr);
+    const expiryDate = new Date(expiryDateStr);
+    const diffDays = Math.ceil((expiryDate - todayDate) / (1000 * 60 * 60 * 24));
+
+    return diffDays >= 0 && diffDays <= 7;
+}
+
+function isLowStock(quantity, minStock) {
+    return Number(quantity) <= Number(minStock);
+}
+
+function getDaysRemaining(expiryDateStr) {
+    if (!expiryDateStr) return 0;
+    const todayDate = new Date(getTodayStr());
+    const expiryDate = new Date(expiryDateStr);
+    return Math.ceil((expiryDate - todayDate) / (1000 * 60 * 60 * 24));
+}
+
+function addFoodItem(item) {
+    const pantry = getPantry();
+    item.id = Date.now();
+    item.quantity = Number(item.quantity);
+    item.minStock = Number(item.minStock);
+    pantry.unshift(item);
+    savePantry(pantry);
+    return item;
+}
+
+function deleteFoodItem(id) {
+    let pantry = getPantry();
+    pantry = pantry.filter(i => i.id !== Number(id));
+    savePantry(pantry);
+}
+
+function adjustQuantity(id, delta) {
+    const pantry = getPantry();
+    const item = pantry.find(i => i.id === Number(id));
+    if (item) {
+        item.quantity = Math.max(0, item.quantity + delta);
+        savePantry(pantry);
+        return item.quantity;
+    }
+    return null;
+}
+
+
+
