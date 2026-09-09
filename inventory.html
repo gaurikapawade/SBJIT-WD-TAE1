@@ -50,6 +50,40 @@
                 </span>
             </div>
         </div>
+
+        <div class="backdrop-blur-xl bg-white/70 rounded-3xl p-4 border border-emerald-100 shadow-xl shadow-emerald-900/5 flex flex-col md:flex-row gap-3">
+            <div class="relative flex-1">
+                <i class="fa-solid fa-magnifying-glass text-slate-400 absolute left-4 top-1/2 -translate-y-1/2 text-sm"></i>
+                <input type="text" id="search-input" placeholder="Search food items by name..." 
+                    class="w-full pl-11 pr-4 py-3 bg-white/90 border border-emerald-200/80 rounded-2xl text-sm font-medium text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all">
+            </div>
+
+            <div class="w-full md:w-56">
+                <select id="category-filter" 
+                    class="w-full px-4 py-3 bg-white/90 border border-emerald-200/80 rounded-2xl text-sm font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all">
+                    <option value="ALL">All Categories</option>
+                    <option value="Grains">Grains & Cereals</option>
+                    <option value="Dairy">Dairy & Eggs</option>
+                    <option value="Vegetables & Fruits">Vegetables & Fruits</option>
+                    <option value="Meat">Meat & Seafood</option>
+                    <option value="Beverages">Beverages</option>
+                    <option value="Condiments">Condiments & Spices</option>
+                    <option value="Bakery">Bakery & Snacks</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="w-full md:w-52">
+                <select id="status-filter" 
+                    class="w-full px-4 py-3 bg-white/90 border border-emerald-200/80 rounded-2xl text-sm font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all">
+                    <option value="ALL">All Statuses</option>
+                    <option value="LOW">Low Stock</option>
+                    <option value="EXPIRING">Expiring Soon</option>
+                    <option value="EXPIRED">Expired</option>
+                    <option value="NORMAL">In Stock (Normal)</option>
+                </select>
+            </div>
+        </div>
     </main>
 </body>
 </html>
