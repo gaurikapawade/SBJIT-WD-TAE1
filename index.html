@@ -202,6 +202,46 @@
             document.getElementById("stat-low-stock").textContent = lowStockCount;
             document.getElementById("stat-expiring").textContent = expiringCount;
             document.getElementById("stat-expired").textContent = expiredCount;
+
+            const recentTable = document.getElementById("recent-items-table");
+            if (pantry.length === 0) {
+                recentTable.innerHTML = `
+                    <tr>
+                        <td colspan="5" class="px-4 py-8 text-center text-slate-400 font-semibold">
+                            No pantry items found. Click <a href="add-item.html" class="text-emerald-600 font-extrabold hover:underline">Add Item</a> to get started!
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            const recentItems = pantry.slice(0, 5);
+            let html = "";
+            for (let i = 0; i < recentItems.length; i++) {
+                const item = recentItems[i];
+                
+                let statusBadge = `<span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">In Stock</span>`;
+                if (isExpired(item.expiry)) {
+                    statusBadge = `<span class="px-3 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-800 border border-rose-200">Expired</span>`;
+                } else if (isExpiringSoon(item.expiry)) {
+                    statusBadge = `<span class="px-3 py-1 rounded-full text-xs font-bold bg-orange-100 text-orange-800 border border-orange-200">Expiring Soon</span>`;
+                } else if (isLowStock(item.quantity, item.minStock)) {
+                    statusBadge = `<span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-200">Low Stock</span>`;
+                }
+
+                html += `
+                    <tr class="hover:bg-emerald-50/50 transition-colors">
+                        <td class="px-4 py-4 font-bold text-slate-900">${escapeHtml(item.name)}</td>
+                        <td class="px-4 py-4">
+                            <span class="px-3 py-1 rounded-xl text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">${escapeHtml(item.category)}</span>
+                        </td>
+                        <td class="px-4 py-4 font-bold text-slate-800">${item.quantity} <span class="text-xs text-slate-400 font-medium">${escapeHtml(item.unit)}</span></td>
+                        <td class="px-4 py-4 text-xs text-slate-500 font-semibold">${formatDate(item.expiry)}</td>
+                        <td class="px-4 py-4 text-right">${statusBadge}</td>
+                    </tr>
+                `;
+            }
+            recentTable.innerHTML = html;
         }
 
         function escapeHtml(str) {
