@@ -223,10 +223,57 @@
             grid.innerHTML = html;
         }
 
+        function onIncreaseQty(id) {
+            const newQty = adjustQuantity(id, 1);
+            if (newQty !== null) {
+                renderInventory();
+            }
+        }
+
+        function onDecreaseQty(id) {
+            const newQty = adjustQuantity(id, -1);
+            if (newQty !== null) {
+                renderInventory();
+            }
+        }
+
+        function onDeleteItem(id) {
+            const pantry = getPantry();
+            const item = pantry.find(i => i.id === Number(id));
+            if (item && confirm(`Are you sure you want to delete "${item.name}" from your pantry?`)) {
+                deleteFoodItem(id);
+                renderInventory();
+            }
+        }
+
+        function clearFilters() {
+            document.getElementById("search-input").value = "";
+            document.getElementById("category-filter").value = "ALL";
+            document.getElementById("status-filter").value = "ALL";
+            renderInventory();
+        }
+
         function escapeHtml(str) {
             if (!str) return '';
             return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
         }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("search-input").addEventListener("input", renderInventory);
+            document.getElementById("category-filter").addEventListener("change", renderInventory);
+            document.getElementById("status-filter").addEventListener("change", renderInventory);
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const statusParam = urlParams.get('status');
+            if (statusParam) {
+                const statusSelect = document.getElementById("status-filter");
+                if (statusSelect && statusSelect.querySelector(`option[value="${statusParam}"]`)) {
+                    statusSelect.value = statusParam;
+                }
+            }
+
+            renderInventory();
+        });
     </script>
 </body>
 </html>
