@@ -111,6 +111,71 @@
                 </div>
             </a>
         </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+            <div class="lg:col-span-2 backdrop-blur-xl bg-white/70 rounded-3xl border border-emerald-100 shadow-xl shadow-emerald-900/5 p-6 sm:p-8 flex flex-col justify-between space-y-6">
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h2 class="text-xl font-black text-slate-900 tracking-tight">Recent Stock Activity</h2>
+                            <p class="text-xs text-slate-500 font-medium mt-0.5">Latest added or updated food items</p>
+                        </div>
+                        <a href="inventory.html" class="text-xs font-bold text-emerald-600 hover:text-emerald-700 flex items-center gap-1.5 transition-colors">
+                            View All Items &rarr;
+                        </a>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm text-slate-700">
+                            <thead class="text-xs font-bold text-emerald-800 uppercase bg-emerald-50/80 rounded-2xl">
+                                <tr>
+                                    <th class="px-4 py-3.5 rounded-l-2xl">Food Item</th>
+                                    <th class="px-4 py-3.5">Category</th>
+                                    <th class="px-4 py-3.5">Quantity</th>
+                                    <th class="px-4 py-3.5">Expiry Date</th>
+                                    <th class="px-4 py-3.5 rounded-r-2xl text-right">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recent-items-table" class="divide-y divide-emerald-100/60 font-medium">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="backdrop-blur-xl bg-white/70 rounded-3xl border border-emerald-100 shadow-xl shadow-emerald-900/5 p-6 sm:p-8 flex flex-col space-y-6">
+                <div>
+                    <h2 class="text-xl font-black text-slate-900 tracking-tight">Quick Actions</h2>
+                    <p class="text-xs text-slate-500 font-medium mt-0.5">Fast shortcuts for inventory management</p>
+                </div>
+                <div class="space-y-4 flex-1 flex flex-col justify-between">
+                    <a href="add-item.html" class="flex-1 w-full flex items-center justify-between p-5 sm:p-6 rounded-2xl bg-emerald-50/50 hover:bg-emerald-100/70 text-slate-900 font-bold text-sm border border-emerald-200/70 hover:border-emerald-400/80 transition-all group shadow-sm hover:shadow-md">
+                        <span class="flex items-center gap-4">
+                            <span class="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-600 text-white flex items-center justify-center shadow-md shadow-emerald-600/20 shrink-0 group-hover:scale-105 transition-transform">
+                                <i class="fa-solid fa-plus text-xl text-white"></i>
+                            </span>
+                            <div>
+                                <span class="block text-base font-extrabold text-slate-900 group-hover:text-emerald-800 transition-colors">Add Food Item</span>
+                                <span class="block text-xs font-medium text-slate-500 mt-0.5">Record new stock entry</span>
+                            </div>
+                        </span>
+                        <i class="fa-solid fa-chevron-right text-emerald-600 group-hover:translate-x-1 transition-transform text-sm shrink-0"></i>
+                    </a>
+                    <a href="inventory.html" class="flex-1 w-full flex items-center justify-between p-5 sm:p-6 rounded-2xl bg-teal-50/50 hover:bg-teal-100/70 text-slate-900 font-bold text-sm border border-teal-200/70 hover:border-teal-400/80 transition-all group shadow-sm hover:shadow-md">
+                        <span class="flex items-center gap-4">
+                            <span class="w-12 h-12 rounded-2xl bg-gradient-to-br from-teal-600 to-emerald-600 text-white flex items-center justify-center shadow-md shadow-teal-600/20 shrink-0 group-hover:scale-105 transition-transform">
+                                <i class="fa-solid fa-clipboard-list text-xl text-white"></i>
+                            </span>
+                            <div>
+                                <span class="block text-base font-extrabold text-slate-900 group-hover:text-teal-800 transition-colors">Manage Pantry Stock</span>
+                                <span class="block text-xs font-medium text-slate-500 mt-0.5">View & filter all items</span>
+                            </div>
+                        </span>
+                        <i class="fa-solid fa-chevron-right text-teal-600 group-hover:translate-x-1 transition-transform text-sm shrink-0"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
     </main>
 </body>
 </html>
