@@ -147,22 +147,5 @@ function adjustQuantity(id, delta) {
     return null;
 }
 
-function updateFoodItem(id, updatedData) {
-    const pantry = getPantry();
-    const index = pantry.findIndex(i => i.id === Number(id));
-    if (index !== -1) {
-        pantry[index] = {
-            ...pantry[index],
-            ...updatedData,
-            id: Number(id),
-            quantity: Number(updatedData.quantity),
-            minStock: Number(updatedData.minStock)
-        };
-        savePantry(pantry);
-        return pantry[index];
-    }
-    return null;
-}
-
 
 
