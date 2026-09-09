@@ -190,6 +190,18 @@
             }
 
             errorContainer.classList.add("hidden");
+
+            const itemData = {
+                name,
+                category,
+                unit,
+                quantity: Number(quantityVal),
+                minStock: Number(minStockVal),
+                expiry
+            };
+
+            addFoodItem(itemData);
+            window.location.href = "inventory.html";
         });
     </script>
 </body>
