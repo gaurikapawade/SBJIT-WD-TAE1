@@ -84,6 +84,22 @@
                 </select>
             </div>
         </div>
+
+        <div id="inventory-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        </div>
+
+        <div id="empty-state" class="hidden backdrop-blur-xl bg-white/70 rounded-3xl border border-emerald-100 p-12 text-center space-y-4 shadow-xl">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-700 rounded-2xl flex items-center justify-center mx-auto shadow-inner">
+                <i class="fa-solid fa-box-open text-2xl text-emerald-700"></i>
+            </div>
+            <div>
+                <h3 class="text-lg font-extrabold text-slate-900">No Food Items Found</h3>
+                <p class="text-sm text-slate-500 max-w-sm mx-auto mt-1 font-medium">No pantry items match your current search query or filter options.</p>
+            </div>
+            <button onclick="clearFilters()" class="px-5 py-2.5 rounded-2xl bg-emerald-100 hover:bg-emerald-200 text-emerald-800 font-bold text-xs transition-all">
+                Clear All Filters
+            </button>
+        </div>
     </main>
 </body>
 </html>
